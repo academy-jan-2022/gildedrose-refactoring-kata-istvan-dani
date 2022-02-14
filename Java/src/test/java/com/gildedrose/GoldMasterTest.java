@@ -8,6 +8,8 @@ public class GoldMasterTest {
     private final static String snapshot = "-------- day 0 --------\n" +
         "name, sellIn, quality\n" +
         "+5 Dexterity Vest, 10, 20\n" +
+        "+10 Dexterity Vest, 0, 20\n" +
+        "+15 Dexterity Vest, 0, 0\n" +
         "Aged Brie, 2, 0\n" +
         "Elixir of the Mongoose, 5, 7\n" +
         "Sulfuras, Hand of Ragnaros, 0, 80\n" +
@@ -20,6 +22,8 @@ public class GoldMasterTest {
         "-------- day 1 --------\n" +
         "name, sellIn, quality\n" +
         "+5 Dexterity Vest, 9, 19\n" +
+        "+10 Dexterity Vest, -1, 18\n" +
+        "+15 Dexterity Vest, -1, 0\n" +
         "Aged Brie, 1, 1\n" +
         "Elixir of the Mongoose, 4, 6\n" +
         "Sulfuras, Hand of Ragnaros, 0, 80\n" +
@@ -27,7 +31,7 @@ public class GoldMasterTest {
         "Backstage passes to a TAFKAL80ETC concert, 14, 21\n" +
         "Backstage passes to a TAFKAL80ETC concert, 9, 50\n" +
         "Backstage passes to a TAFKAL80ETC concert, 4, 50\n" +
-        "Conjured Mana Cake, 2, 5\n"+
+        "Conjured Mana Cake, 2, 5\n" +
         "\n";
 
     @Test
@@ -35,6 +39,8 @@ public class GoldMasterTest {
     should_be_same_as_snapshot() {
         Item[] items = new Item[]{
             new Item("+5 Dexterity Vest", 10, 20), //
+            new Item("+10 Dexterity Vest", 0, 20), //
+            new Item("+15 Dexterity Vest", 0, 0), //
             new Item("Aged Brie", 2, 0), //
             new Item("Elixir of the Mongoose", 5, 7), //
             new Item("Sulfuras, Hand of Ragnaros", 0, 80), //
