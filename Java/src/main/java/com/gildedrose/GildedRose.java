@@ -12,15 +12,26 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-
-            switch (item.name) {
-                case "Sulfuras, Hand of Ragnaros" -> {}
-                case "Backstage passes to a TAFKAL80ETC concert" -> updatePassQuality(item);
-                case "Aged Brie" -> updateBrieQuality(item);
-                default -> updateGenericQuality(item);
+            if ("Sulfuras, Hand of Ragnaros".equals(item.name)) {
+            } else if ("Backstage passes to a TAFKAL80ETC concert".equals(item.name)) {
+                updatePassQuality(item);
+            } else if ("Aged Brie".equals(item.name)) {
+                updateBrieQuality(item);
+            } else if(item.name.contains("Conjured")) {
+                updateConjuredQuality(item);
+            } else
+                updateGenericQuality(item);
             }
         }
+
+    private void updateConjuredQuality(Item item) {
+        decreaseSellInDate(item);
+        decreaseQualityIfPossible(item);
+        decreaseQualityIfPossible(item);
+
     }
+
+
 
     private void decreaseSellInDate(Item item) {
         item.sellIn = item.sellIn - 1;
