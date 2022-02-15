@@ -23,17 +23,11 @@ class GildedRose {
                 continue;
             }
 
-
-            if (!item.name.equals("Aged Brie")) {
-                decreaseQualityIfPossible(item);
-
+            if (item.name.equals("Aged Brie")) {
+                increaseQualityIfPossible(item);
             } else {
-                if (item.quality < MAXIMUM_QUALITY) {
-                    increaseQualityIfPossible(item);
-
-                }
+                decreaseQualityIfPossible(item);
             }
-
 
             if (item.sellIn < SELL_BY_DATE) {
                 if (!item.name.equals("Aged Brie")) {
