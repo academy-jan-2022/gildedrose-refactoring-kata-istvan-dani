@@ -18,19 +18,13 @@ class GildedRose {
 
             item.sellIn = item.sellIn - 1;
 
-            if(item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                if (item.quality < MAXIMUM_QUALITY) {
-                    increaseQualityIfPossible(item);
-                    checkBackstage(item);
-                }
-                if (item.sellIn < SELL_BY_DATE) {
-                    item.quality = MINIMUM_QUALITY;
-                }
+            if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+                checkBackstage(item);
                 continue;
             }
 
 
-            if (!item.name.equals("Aged Brie")){
+            if (!item.name.equals("Aged Brie")) {
                 decreaseQualityIfPossible(item);
 
             } else {
@@ -43,11 +37,7 @@ class GildedRose {
 
             if (item.sellIn < SELL_BY_DATE) {
                 if (!item.name.equals("Aged Brie")) {
-                    if (!item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                        decreaseQualityIfPossible(item);
-                    } else {
-                        item.quality = MINIMUM_QUALITY;
-                    }
+                    decreaseQualityIfPossible(item);
                 } else {
                     increaseQualityIfPossible(item);
 
@@ -58,7 +48,8 @@ class GildedRose {
     }
 
     private void checkBackstage(Item item) {
-        if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+        if (item.quality < MAXIMUM_QUALITY) {
+            increaseQualityIfPossible(item);
             if (item.sellIn < 11) {
                 increaseQualityIfPossible(item);
 
@@ -68,6 +59,10 @@ class GildedRose {
                 increaseQualityIfPossible(item);
 
             }
+
+        }
+        if (item.sellIn < SELL_BY_DATE) {
+            item.quality = MINIMUM_QUALITY;
         }
     }
 
