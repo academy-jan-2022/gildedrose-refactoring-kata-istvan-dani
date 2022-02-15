@@ -24,20 +24,24 @@ class GildedRose {
             }
 
             if (item.name.equals("Aged Brie")) {
-                increaseQualityIfPossible(item);
+                updateBrieQuality(item);
             } else {
+                updateGenericQuality(item);
+            }
+        }
+    }
+
+    private void updateGenericQuality(Item item) {
+        decreaseQualityIfPossible(item);
+        if (item.sellIn < SELL_BY_DATE) {
                 decreaseQualityIfPossible(item);
-            }
+        }
+    }
 
-            if (item.sellIn < SELL_BY_DATE) {
-                if (!item.name.equals("Aged Brie")) {
-                    decreaseQualityIfPossible(item);
-                } else {
-                    increaseQualityIfPossible(item);
-
-                }
-            }
-
+    private void updateBrieQuality(Item item) {
+        increaseQualityIfPossible(item);
+        if (item.sellIn < SELL_BY_DATE) {
+            increaseQualityIfPossible(item);
         }
     }
 
