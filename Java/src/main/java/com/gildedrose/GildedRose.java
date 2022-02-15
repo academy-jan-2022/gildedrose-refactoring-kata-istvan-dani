@@ -12,10 +12,9 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            item.sellIn = item.sellIn - 1;
 
             switch (item.name) {
-                case "Sulfuras, Hand of Ragnaros" -> updateSulfurasQuality(item);
+                case "Sulfuras, Hand of Ragnaros" -> {}
                 case "Backstage passes to a TAFKAL80ETC concert" -> updatePassQuality(item);
                 case "Aged Brie" -> updateBrieQuality(item);
                 default -> updateGenericQuality(item);
@@ -23,7 +22,12 @@ class GildedRose {
         }
     }
 
+    private void decreaseSellInDate(Item item) {
+        item.sellIn = item.sellIn - 1;
+    }
+
     private void updateGenericQuality(Item item) {
+        decreaseSellInDate(item);
         decreaseQualityIfPossible(item);
         if (item.sellIn < SELL_BY_DATE) {
             decreaseQualityIfPossible(item);
@@ -31,17 +35,15 @@ class GildedRose {
     }
 
     private void updateBrieQuality(Item item) {
+        decreaseSellInDate(item);
         increaseQualityIfPossible(item);
         if (item.sellIn < SELL_BY_DATE) {
             increaseQualityIfPossible(item);
         }
     }
 
-    private void updateSulfurasQuality(Item item) {
-        item.sellIn = item.sellIn + 1;
-    }
-
     private void updatePassQuality(Item item) {
+        decreaseSellInDate(item);
         if (item.quality < MAXIMUM_QUALITY) {
             increaseQualityIfPossible(item);
             if (item.sellIn < 11) {
